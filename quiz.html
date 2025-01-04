@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Participe do nosso questionário para casais e descubra suas afinidades no dia a dia. Divirta-se e entenda melhor sua rotina e estilo de vida em casal!" />
+    <meta name="keywords" content="questionário para casais, quiz sobre rotina, estilo de vida, compatibilidade, relacionamento" />
+    <meta property="og:title" content="Questionário para Casais - Descubra Suas Afinidades" />
+    <meta property="og:description" content="Participe do nosso questionário para casais e descubra suas afinidades no dia a dia. Divirta-se e entenda melhor sua rotina e estilo de vida." />
+    <meta property="og:image" content="./ppc.png" />
+    <meta property="og:type" content="website" />
+    <title>Questionário para Casais - Descubra Suas Afinidades</title>
+
+    <style>
+      * {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #101728;
+        color: #f1f1f1;
+        line-height: 24px;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      label {
+        display: block;
+      }
+
+      .title {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .theme-color {
+        color: #e62657;
+      }
+
+      .question {
+        margin-bottom: 20px;
+        font-weight: bold;
+      }
+
+      .question p {
+        margin-bottom: 10px;
+        font-size: 1.2em;
+      }
+
+      .btn {
+        display: block;
+        margin: 0 auto;
+        padding: 10px 20px;
+        background: #e62657;
+        color: #fff;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+
+      .btn:hover {
+        filter: brightness(0.9);
+      }
+
+      img {
+        display: block;
+        margin: 0 auto;
+        max-width: 100%;
+      }
+
+      .img-50 {
+        width: 30%;
+        max-width: 300px;
+      }
+
+      .names {
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+
+      .names div {
+        flex: 1 1 45%;
+      }
+
+      .names input {
+        text-align: center;
+        background-color: #e62657;
+        border: 0;
+        padding: 10px;
+        border-radius: 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: white;
+        font-size: 0.8em;
+        width: 100%;
+      }
+
+      form h3 {
+        margin: 20px 0;
+      }
+
+      #section2, #section3 {
+        display: none;
+      }
+
+      #name-first, #name-second {
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        font-size: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="./index.html">
+        <img src="./ppc.png" alt="Logo ProntoPraCasar - Questionário para casais" class="img-50" />
+      </a>
+      <h1 class="title theme-color">ProntoPraCasar</h1>
+    </header>
+
+    <main class="container">
+      <section id="section1">
+        <form id="getNamesForm" method="post">
+          <h2 class="title">Informe os nomes do casal:</h2>
+          <div class="names">
+            <div>
+              <label for="first">1°</label>
+              <input type="text" id="first" name="first" required />
+            </div>
+            <div>
+              <label for="second">2°</label>
+              <input type="text" id="second" name="second" required />
+            </div>
+          </div>
+          <button type="submit" class="btn">Iniciar Questionário</button>
+        </form>
+      </section>
+
+      <section id="section2">
+        <p id="name-first"></p>
+        <form id="quizForm1" method="post">
+          <h3 class="theme-color">Rotina e estilo de vida</h3>
+          <div class="question">
+            <p>1. Você prefere começar o dia cedo ou tarde?</p>
+            <div class="options">
+              <label>
+                <input type="radio" name="q1" value="1" required /> Cedo, gosto de rotina matinal
+              </label>
+              <label>
+                <input type="radio" name="q1" value="2" required /> Tarde, gosto de dormir mais um pouco
+              </label>
+            </div>
+          </div>
+
+          <div class="question">
+            <p>2. Você é mais de acordar com um despertador ou acordar naturalmente?</p>
+            <div class="options">
+              <label>
+                <input type="radio" name="q2" value="1" required /> Com despertador
+              </label>
+              <label>
+                <input type="radio" name="q2" value="2" required /> Naturalmente
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="btn">Próximo</button>
+        </form>
+      </section>
+
+      <section id="section3">
+        <p id="name-second"></p>
+        <form id="quizForm2" method="post">
+          <div class="question">
+            <p>1. Você prefere começar o dia cedo ou tarde?</p>
+            <div class="options">
+              <label>
+                <input type="radio" name="q1" value="1" required /> Cedo, gosto de rotina matinal
+              </label>
+              <label>
+                <input type="radio" name="q1" value="2" required /> Tarde, gosto de dormir mais um pouco
+              </label>
+            </div>
+          </div>
+
+          <div class="question">
+            <p>2. Você é mais de acordar com um despertador ou acordar naturalmente?</p>
+            <div class="options">
+              <label>
+                <input type="radio" name="q2" value="1" required /> Com despertador
+              </label>
+              <label>
+                <input type="radio" name="q2" value="2" required /> Naturalmente
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="btn">Enviar Resultados</button>
+        </form>
+      </section>
+    </main>
+
+    <script>
+      window.onload = function () {
+        document.querySelector("#getNamesForm").addEventListener("submit", function (event) {
+          event.preventDefault();
+  
+          const first = document.querySelector("#first").value;
+          const second = document.querySelector("#second").value;
+          localStorage.setItem("first", first);
+          localStorage.setItem("second", second);
+
+          document.querySelector("#section1").style.display = "none";
+          document.querySelector("#section2").style.display = "block";
+
+          document.querySelector("#name-first").textContent = '1° ' + first;
+          document.querySelector("#name-second").textContent = '2° ' + second;
+        });
+  
+        document.querySelector("#quizForm1").addEventListener("submit", function (event) {
+          event.preventDefault();
+          submitQuiz('quizForm1');
+
+          document.querySelector("#section2").style.display = "none";
+          document.querySelector("#section3").style.display = "block";
+        });
+
+        document.querySelector("#quizForm2").addEventListener("submit", function (event) {
+          event.preventDefault();
+          submitQuiz('quizForm2');
+        });
+
+        function submitQuiz(idForm) {
+          const form = document.getElementById(idForm);
+          const formData = new FormData(form);
+          let responses = {};
+
+          formData.forEach((value, key) => {
+            responses[key] = value;
+          });
+
+          localStorage.setItem(idForm, JSON.stringify(responses));
+        }
+      }
+    </script>
+  </body>
+</html>
