@@ -112,7 +112,7 @@
         margin: 20px 0;
       }
 
-      #section2, #section3 {
+      #section2, #section3, #section4 {
         display: none;
       }
 
@@ -122,6 +122,24 @@
         margin-bottom: 20px;
         text-transform: uppercase;
         font-size: 24px;
+      }
+
+      table {
+        margin: 10px 0px;
+      }
+
+      table, th, td {
+        border: 1px solid #e62657;
+        border-collapse: collapse;
+        padding: 5px;
+      }
+
+      table thead {
+        background:  #e62657;
+      }
+
+      table img {
+        width: 30px;
       }
     </style>
   </head>
@@ -136,7 +154,7 @@
     <main class="container">
       <section id="section1">
         <form id="getNamesForm" method="post">
-          <h2 class="title">Informe os nomes do casal:</h2>
+          <h2 class="title">Nomes do Casal:</h2>
           <div class="names">
             <div>
               <label for="first">1°</label>
@@ -147,13 +165,13 @@
               <input type="text" id="second" name="second" required />
             </div>
           </div>
-          <button type="submit" class="btn">Iniciar Questionário</button>
+          <button type="submit" class="btn">Iniciar</button>
         </form>
       </section>
 
       <section id="section2">
         <p id="name-first"></p>
-        <form id="quizForm1" method="post">
+        <form id="firstForm" method="post">
           <h3 class="theme-color">Rotina e estilo de vida</h3>
           <div class="question">
             <p>1. Você prefere começar o dia cedo ou tarde?</p>
@@ -185,7 +203,7 @@
 
       <section id="section3">
         <p id="name-second"></p>
-        <form id="quizForm2" method="post">
+        <form id="secondForm" method="post">
           <div class="question">
             <p>1. Você prefere começar o dia cedo ou tarde?</p>
             <div class="options">
@@ -210,39 +228,77 @@
             </div>
           </div>
 
-          <button type="submit" class="btn">Enviar Resultados</button>
+          <button type="submit" class="btn">Ver Resultados</button>
         </form>
+      </section>
+
+      <section id="section4">
+        <h2 class="theme-color">Resultados</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Perguntas</th>
+              <th>Match</th>
+            </tr>
+          </thead>
+          <tbody id="results-body">
+          </tbody>
+        </table>
+        <button class="btn" id="restart">Reiniciar</button>
       </section>
     </main>
 
     <script>
       window.onload = function () {
+
+        const questions = {
+          "q1": "Você prefere começar o dia cedo ou tarde?",
+          "q2": "Você é mais de acordar com um despertador ou acordar naturalmente?"
+        }
+
+        const section1 = document.querySelector("#section1");
+        const section2 = document.querySelector("#section2");
+        const section3 = document.querySelector("#section3");
+        const section4 = document.querySelector("#section4");
+
+        let results = {};
+
         document.querySelector("#getNamesForm").addEventListener("submit", function (event) {
           event.preventDefault();
   
-          const first = document.querySelector("#first").value;
-          const second = document.querySelector("#second").value;
-          localStorage.setItem("first", first);
-          localStorage.setItem("second", second);
+          localStorage.setItem("name-first", document.querySelector("#first").value);
+          localStorage.setItem("name-second", document.querySelector("#second").value);
 
-          document.querySelector("#section1").style.display = "none";
-          document.querySelector("#section2").style.display = "block";
+          setName();
 
-          document.querySelector("#name-first").textContent = '1° ' + first;
-          document.querySelector("#name-second").textContent = '2° ' + second;
+          section1.style.display = "none";
+          section2.style.display = "block";
+
+          localStorage.setItem("section", 1);
         });
   
-        document.querySelector("#quizForm1").addEventListener("submit", function (event) {
+        document.querySelector("#firstForm").addEventListener("submit", function (event) {
           event.preventDefault();
-          submitQuiz('quizForm1');
+          submitQuiz('firstForm');
 
-          document.querySelector("#section2").style.display = "none";
-          document.querySelector("#section3").style.display = "block";
+          section2.style.display = "none";
+          section3.style.display = "block";
+
+          localStorage.setItem("section", 2);
         });
 
-        document.querySelector("#quizForm2").addEventListener("submit", function (event) {
+        document.querySelector("#secondForm").addEventListener("submit", function (event) {
           event.preventDefault();
-          submitQuiz('quizForm2');
+          submitQuiz('secondForm');
+
+          setResults();
+
+          localStorage.setItem("section", 3);
+        });
+
+        document.querySelector("#restart").addEventListener("click", function () {
+          localStorage.clear();
+          location.reload();
         });
 
         function submitQuiz(idForm) {
@@ -256,6 +312,74 @@
 
           localStorage.setItem(idForm, JSON.stringify(responses));
         }
+
+        function setName() {
+          document.querySelector("#name-first").textContent = '1° ' + localStorage.getItem("name-first");
+          document.querySelector("#name-second").textContent = '2° ' + localStorage.getItem("name-second");
+        }
+
+        function init() {
+          if (localStorage.getItem("section") == '1') {
+            section1.style.display = "none";
+            section2.style.display = "block";
+          }
+
+          if (localStorage.getItem("section") == '2') {
+            section1.style.display = "none";
+            section2.style.display = "none";
+            section3.style.display = "block";
+          }
+
+           if (localStorage.getItem("section") == '3') {
+            section1.style.display = "none";
+            section2.style.display = "none";
+            section3.style.display = "none";
+            section4.style.display = "block";
+
+            setResults();
+          }
+
+          setName();
+        }
+
+        function setResults() {
+          let form1 = JSON.parse(localStorage.getItem("firstForm"));
+          let form2 = JSON.parse(localStorage.getItem("secondForm"));
+
+          let differences = 0;
+
+          for (let key in form1) {
+            if (form1[key] !== form2[key]) {
+              differences++;
+              results[key] = 0;
+            } else {
+              results[key] = 1;
+            }
+          }
+
+          populateResultsTable();
+
+          section3.style.display = "none";
+          section4.style.display = "block";
+          // localStorage.clear();
+        }
+
+        function populateResultsTable() {
+          let tableContent = '';
+          for (let item in results) {
+            icon = results[item] == 0 ? 'error' : 'success';
+            tableContent += `
+              <tr>
+                <td>${questions[item]}</td>
+                <td><img src="./images/${icon}.svg"></td>
+              </tr>
+            `;
+          }
+
+          document.querySelector("#results-body").innerHTML = tableContent;
+        }
+
+        init();
       }
     </script>
   </body>
