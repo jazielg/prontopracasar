@@ -222,6 +222,7 @@
           <tbody id="results-body">
           </tbody>
         </table>
+        <p>Use os pontos em que não deram Match para discurtir entre vocês.</p>
         <button class="btn" id="restart">Reiniciar</button>
       </section>
     </main>
@@ -232,12 +233,12 @@
         const questions = [
           {
             "question": "Você prefere começar o dia cedo ou tarde?",
-            "options": ["Cedo, gosto de rotina matinal", "Tarde, gosto de dormir mais um pouco"],
+            "options": ["Cedo, gosto de uma rotina matinal", "Mais tarde, prefiro dormir um pouco mais"],
             "category": "Rotina e estilo de vida"
           },
           {
             "question": "Você prefere morar na cidade grande ou no interior?",
-            "options": ["Cidade grande, amo movimento e barulho", "Interior, quero sossego e tranquilidade"],
+            "options": ["Cidade grande, amo movimento e agitação", "Interior, quero sossego e tranquilidade"],
             "category": "Rotina e estilo de vida"
           },
           {
@@ -246,8 +247,8 @@
             "category": "Rotina e estilo de vida"
           },
           {
-            "question": "Você é uma pessoa religiosa?",
-            "options": ["Sim, tenho religião", "Não, não tenho religião"],
+            "question": "Em relação à criação de filhos, a religião deve ser:",
+            "options": ["Decidida por ambos", "Não imposta"],
             "category": "Rotina e estilo de vida"
           },
           {
@@ -256,7 +257,7 @@
             "category": "Rotina e estilo de vida"
           },
           {
-            "question": "Você prefere morar em um lugar quente ou frio?",
+            "question": "Você prefere morar em um lugar de clima quente ou frio?",
             "options": ["Quente", "Frio"],
             "category": "Rotina e estilo de vida"
           },
@@ -267,12 +268,12 @@
           },
           {
             "question": "Em uma discussão o que você prefere?",
-            "options": ["Esfriar a cabeça primeiro e falar depois", "Quero resolver logo e o quanto antes."],
+            "options": ["Esfriar a cabeça primeiro e falar depois", "Quero resolver logo e o quanto antes"],
             "category": "Hábitos e preferências"
           },
           {
             "question": "Você gosta de passar seu tempo livre sozinho?",
-            "options": ["Sim, gosto de ter um tempo só pra mim.", "Não, quero estar sempre acompanhado."],
+            "options": ["Sim, gosto de ter um tempo só pra mim", "Não, quero estar sempre acompanhado"],
             "category": "Hábitos e preferências"
           },
           {
@@ -281,7 +282,7 @@
             "category": "Hábitos e preferências"
           },
           {
-            "question": "Você prefere uma casa ou apartamento?",
+            "question": "Você prefere morar em uma casa ou apartamento?",
             "options": ["Casa", "Apartamento"],
             "category": "Hábitos e preferências"
           },
@@ -291,8 +292,13 @@
             "category": "Hábitos e preferências"
           },
           {
+            "question": "Você é uma pessoa que fuma ou bebe?",
+            "options": ["Sim, com moderação", "Não, evito cigarros e bebidas"],
+            "category": "Hábitos e preferências"
+          },
+          {
             "question": "Como você organiza a sua casa?",
-            "options": ["Desleixado, faço uma bagunça organizada", "Organizado, gosto de sempre deixar as coisas no lugar certo"],
+            "options": ["Desleixado, faço uma bagunça organizada", "Organizado, tudo no lugar certo"],
             "category": "Hábitos e preferências"
           },
            {
@@ -307,7 +313,7 @@
           },
            {
             "question": "Você prefere animais de estimação ou não quer ter nenhum?",
-            "options": ["Quero ter algum Animal de estimação", "Não quero ter animal de estimação"],
+            "options": ["Quero ter algum animal de estimação", "Não quero ter animal de estimação"],
             "category": "Família e relacionamentos"
           },
            {
@@ -320,14 +326,19 @@
             "options": ["Não gosto, tem que estar sempre comigo", "Não me importo"],
             "category": "Família e relacionamentos"
           },
+          {
+            "question": "A diferença de ideologias políticas é um problema?",
+            "options": ["Sim", "Não"],
+            "category": "Família e relacionamentos"
+          },
            {
-            "question": "Se Você receber um dinheiro a mais, o que prefere?",
-            "options": ["Vou Guarda o dinheiro.", "Vou Comprar o que eu quero."],
+            "question": "Se você receber um dinheiro a mais, o que prefere?",
+            "options": ["Vou guarda o dinheiro", "Vou comprar o que eu quero"],
             "category": "Finanças"
           },
            {
-            "question": "Como Você prefere organizar as finanças da família?",
-            "options": ["Conta Conjunta", "Contas separadas"],
+            "question": "Como você prefere organizar as finanças da família?",
+            "options": ["Conta conjunta", "Contas separadas"],
             "category": "Finanças"
           },
         ];
@@ -462,25 +473,28 @@
 
           let lastCategory = "";
           questions.forEach((question, index) => {
-            console.log(lastCategory);
             showCategory = question.category != lastCategory;
+            let options = '';
+            for (let opt of question.options) {
+              indexOpt = 1;
+              options += `<label>
+                      <input type="radio" name="q${indexOpt}" value="1" required /> ${opt}
+                    </label>`;
+              indexOpt++;
+            }
             quizContainers.forEach(function(container) {
               container.innerHTML += `
                 ${showCategory ? `<h3 class='theme-color'>${question.category}</h3>` : ''}
                 <div class="question">
                   <p>${index + 1}. ${question.question}</p>
                   <div class="options">
-                    <label>
-                      <input type="radio" name="q${index+1}" value="1" required /> ${question.options[0]}
-                    </label>
-                    <label>
-                      <input type="radio" name="q${index+1}" value="2" required /> ${question.options[1]}
-                    </label>
+                  ${options}
                   </div>
                 </div>
               `;
             });
             lastCategory = question.category;
+            options = '';
           });
         }
 
