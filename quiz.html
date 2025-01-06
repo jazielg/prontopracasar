@@ -239,7 +239,6 @@
 
   <script>
     window.onload = function () {
-
       const questions = [
         {
           "question": "Você prefere começar o dia cedo ou tarde?",
@@ -263,7 +262,7 @@
         },
         {
           "question": "Você prefere ter uma vida estável com rotina fixa ou buscar novos desafios e variar sempre?",
-          "options": ["Rotina fixa e estável", "Variar senpre e ter novos desafios"],
+          "options": ["Rotina fixa e estável", "Variar sempre e ter novos desafios"],
           "category": "Rotina e estilo de vida"
         },
         {
@@ -283,7 +282,7 @@
         },
         {
           "question": "Você gosta de passar seu tempo livre sozinho?",
-          "options": ["Sim, gosto de ter um tempo só pra mim", "Não, quero estar sempre acompanhado"],
+          "options": ["Sim, gosto de ter um tempo só pra mim", "Não, quero estar sempre acompanhado(a)"],
           "category": "Hábitos e preferências"
         },
         {
@@ -322,28 +321,28 @@
           "category": "Família e relacionamentos"
         },
         {
-          "question": "Você prefere animais de estimação ou não quer ter nenhum?",
+          "question": "Você quer ter animais de estimação ou não?",
           "options": ["Quero ter algum animal de estimação", "Não quero ter animal de estimação"],
           "category": "Família e relacionamentos"
         },
         {
-          "question": "Como lida se caso seu parceiro tenha como amigo algum Ex?",
+          "question": "Como lida se caso seu parceiro tenha como amigo(a) algum Ex?",
           "options": ["Não me importo", "Prefiro que terminem a amizade"],
           "category": "Família e relacionamentos"
         },
         {
-          "question": "Como lida se caso seu parceiro se divirta apenas com os amigos?",
+          "question": "Como você lida quando seu parceiro sai para se divertir com os amigos?",
           "options": ["Não gosto, tem que estar sempre comigo", "Não me importo"],
           "category": "Família e relacionamentos"
         },
         {
-          "question": "A diferença de ideologias políticas é um problema?",
-          "options": ["Sim", "Não"],
+          "question": "A diferença de ideologias políticas pode ser um desafio para o relacionamento?",
+          "options": ["Sim, pode gerar conflitos e dificultar a convivência", "Não, é possível respeitar as diferenças e manter o relacionamento saudável"],
           "category": "Família e relacionamentos"
         },
         {
           "question": "Se você receber um dinheiro a mais, o que prefere?",
-          "options": ["Vou guarda o dinheiro", "Vou comprar o que eu quero"],
+          "options": ["Vou guardar o dinheiro", "Vou comprar o que eu quero"],
           "category": "Finanças"
         },
         {
@@ -353,98 +352,55 @@
         },
       ];
 
+      // Referências dos elementos HTML
       const section1 = document.querySelector("#section1");
       const section2 = document.querySelector("#section2");
       const section3 = document.querySelector("#section3");
       const section4 = document.querySelector("#section4");
+      const resultsBody = document.querySelector("#results-body");
 
       let results = {};
 
-      document.querySelector("#getNamesForm").addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        localStorage.setItem("name-first", document.querySelector("#first").value);
-        localStorage.setItem("name-second", document.querySelector("#second").value);
-
+      // Função de inicialização
+      function init() {
+        const section = localStorage.getItem("section");
+        if (section === '1') {
+          section1.style.display = "none";
+          section2.style.display = "block";
+        } else if (section === '2') {
+          section1.style.display = "none";
+          section2.style.display = "none";
+          section3.style.display = "block";
+        } else if (section === '3') {
+          section1.style.display = "none";
+          section2.style.display = "none";
+          section3.style.display = "none";
+          section4.style.display = "block";
+          setResults();
+        }
         setName();
-
-        section1.style.display = "none";
-        section2.style.display = "block";
-
-        localStorage.setItem("section", 1);
-      });
-
-      document.querySelector("#firstForm").addEventListener("submit", function (event) {
-        event.preventDefault();
-        submitQuiz('firstForm');
-
-        section2.style.display = "none";
-        section3.style.display = "block";
-
-        localStorage.setItem("section", 2);
-      });
-
-      document.querySelector("#secondForm").addEventListener("submit", function (event) {
-        event.preventDefault();
-        submitQuiz('secondForm');
-
-        setResults();
-
-        localStorage.setItem("section", 3);
-      });
-
-      document.querySelector("#restart").addEventListener("click", function () {
-        localStorage.clear();
-        location.reload();
-      });
-
-      function submitQuiz(idForm) {
-        const form = document.getElementById(idForm);
-        const formData = new FormData(form);
-        let responses = {};
-
-        formData.forEach((value, key) => {
-          responses[key] = value;
-        });
-
-        localStorage.setItem(idForm, JSON.stringify(responses));
       }
 
+      // Função para definir os nomes
       function setName() {
         document.querySelector("#name-first").textContent = '1° ' + localStorage.getItem("name-first");
         document.querySelector("#name-second").textContent = '2° ' + localStorage.getItem("name-second");
       }
 
-      function init() {
-        if (localStorage.getItem("section") == '1') {
-          section1.style.display = "none";
-          section2.style.display = "block";
-        }
-
-        if (localStorage.getItem("section") == '2') {
-          section1.style.display = "none";
-          section2.style.display = "none";
-          section3.style.display = "block";
-        }
-
-        if (localStorage.getItem("section") == '3') {
-          section1.style.display = "none";
-          section2.style.display = "none";
-          section3.style.display = "none";
-          section4.style.display = "block";
-
-          setResults();
-        }
-
-        setName();
+      // Função para registrar as respostas no localStorage
+      function submitQuiz(idForm) {
+        const formData = new FormData(document.getElementById(idForm));
+        const responses = {};
+        formData.forEach((value, key) => responses[key] = value);
+        localStorage.setItem(idForm, JSON.stringify(responses));
       }
 
+      // Função para calcular e exibir resultados
       function setResults() {
-        let form1 = JSON.parse(localStorage.getItem("firstForm"));
-        let form2 = JSON.parse(localStorage.getItem("secondForm"));
+        const form1 = JSON.parse(localStorage.getItem("firstForm"));
+        const form2 = JSON.parse(localStorage.getItem("secondForm"));
 
         let differences = 0;
-
         for (let key in form1) {
           if (form1[key] !== form2[key]) {
             differences++;
@@ -455,63 +411,88 @@
         }
 
         populateResultsTable();
-
-        section3.style.display = "none";
-        section4.style.display = "block";
       }
 
+      // Função para preencher a tabela de resultados
       function populateResultsTable() {
         let tableContent = '';
         let index = 0;
         for (let item in results) {
-          icon = results[item] == 0 ? 'error' : 'success';
+          const icon = results[item] === 0 ? 'error' : 'success';
           tableContent += `
-              <tr>
-                <td>${questions[index]['question']}</td>
-                <td><img src="./images/${icon}.svg"></td>
-              </tr>
-            `;
+            <tr>
+              <td>${questions[index].question}</td>
+              <td><img src="./images/${icon}.svg"></td>
+            </tr>
+          `;
           index++;
         }
-
-        document.querySelector("#results-body").innerHTML = tableContent;
+        resultsBody.innerHTML = tableContent;
       }
 
+      // Função para popular as perguntas nas seções de quiz
       function populateQuestions() {
         const quizContainers = document.querySelectorAll(".questions-container");
-
         let lastCategory = "";
+
         questions.forEach((question, index) => {
-          showCategory = question.category != lastCategory;
-          let options = '';
-          let value = 1;
-          for (let opt of question.options) {
-            options += `<label>
-                      <input type="radio" name="q${index + 1}" value="${value}" required /> ${opt}
-                    </label>`;
-            value++;
-          }
-          quizContainers.forEach(function (container) {
+          const showCategory = question.category !== lastCategory;
+          const options = question.options.map((opt, value) =>
+            `<label><input type="radio" name="q${index + 1}" value="${value + 1}" required /> ${opt}</label>`
+          ).join('');
+
+          quizContainers.forEach(container => {
             container.innerHTML += `
-                ${showCategory ? `<h3 class='theme-color'>${question.category}</h3>` : ''}
-                <div class="question">
-                  <p>${index + 1}. ${question.question}</p>
-                  <div class="options">
-                  ${options}
-                  </div>
-                </div>
-              `;
+              ${showCategory ? `<h3 class='theme-color'>${question.category}</h3>` : ''}
+              <div class="question">
+                <p>${index + 1}. ${question.question}</p>
+                <div class="options">${options}</div>
+              </div>
+            `;
           });
+
           lastCategory = question.category;
-          options = '';
         });
       }
 
-      populateQuestions();
+      // Event Listeners para submissões de formulários
+      document.querySelector("#getNamesForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        localStorage.setItem("name-first", document.querySelector("#first").value);
+        localStorage.setItem("name-second", document.querySelector("#second").value);
+        setName();
+        localStorage.setItem("section", 1);
+        init();
+      });
 
+      document.querySelector("#firstForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        submitQuiz('firstForm');
+        localStorage.setItem("section", 2);
+        init();
+        window.scrollTo(0, 0);
+      });
+
+      document.querySelector("#secondForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        submitQuiz('secondForm');
+        setResults();
+        localStorage.setItem("section", 3);
+        init();
+        window.scrollTo(0, 0);
+      });
+
+      document.querySelector("#restart").addEventListener("click", function () {
+        localStorage.clear();
+        location.reload();
+      });
+
+      // Chama a função para preencher as perguntas e iniciar o processo
+      populateQuestions();
       init();
     }
   </script>
+
 </body>
 
 </html>
