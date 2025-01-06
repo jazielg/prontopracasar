@@ -1,489 +1,498 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Participe do nosso questionário para casais e descubra suas afinidades no dia a dia. Divirta-se e entenda melhor sua rotina e estilo de vida em casal!" />
-    <meta name="keywords" content="questionário para casais, quiz sobre rotina, estilo de vida, compatibilidade, relacionamento" />
-    <meta property="og:title" content="Questionário para Casais - Descubra Suas Afinidades" />
-    <meta property="og:description" content="Participe do nosso questionário para casais e descubra suas afinidades no dia a dia. Divirta-se e entenda melhor sua rotina e estilo de vida." />
-    <meta property="og:image" content="./ppc.png" />
-    <meta property="og:type" content="website" />
-    <title>Pronto Pra Casar</title>
 
-    <style>
-      * {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Participe do nosso questionário para casais e descubra suas afinidades no dia a dia. Divirta-se e entenda melhor sua rotina e estilo de vida em casal!" />
+  <meta name="keywords"
+    content="questionário para casais, quiz sobre rotina, estilo de vida, compatibilidade, relacionamento" />
+  <meta property="og:title" content="Questionário para Casais - Descubra Suas Afinidades" />
+  <meta property="og:description"
+    content="Participe do nosso questionário para casais e descubra suas afinidades no dia a dia. Divirta-se e entenda melhor sua rotina e estilo de vida." />
+  <meta property="og:image" content="./ppc.png" />
+  <meta property="og:type" content="website" />
+  <title>Pronto Pra Casar</title>
 
-      body {
-        background: #101728;
-        color: #f1f1f1;
-        line-height: 24px;
-      }
+  <style>
+    * {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-      .container {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-      }
+    body {
+      background: #101728;
+      color: #f1f1f1;
+      line-height: 24px;
+    }
 
-      label {
-        display: block;
-      }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
 
-      .title {
-        text-align: center;
-        margin-bottom: 20px;
-      }
+    label {
+      display: block;
+    }
 
-      .theme-color {
-        color: #e62657;
-      }
+    .title {
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-      .question {
-        margin-bottom: 20px;
-        font-weight: bold;
-      }
+    .theme-color {
+      color: #e62657;
+    }
 
-      .question p {
-        margin-bottom: 10px;
-        font-size: 1.2em;
-      }
+    .question {
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
 
-      .btn {
-        display: block;
-        margin: 0 auto;
-        padding: 10px 20px;
-        background: #e62657;
-        color: #fff;
-        border: none;
-        border-radius: 15px;
-        cursor: pointer;
-        text-transform: uppercase;
-        font-weight: bold;
-      }
+    .question p {
+      margin-bottom: 10px;
+      font-size: 1.2em;
+    }
 
-      .btn:hover {
-        filter: brightness(0.9);
-      }
+    .btn {
+      display: block;
+      margin: 0 auto;
+      padding: 10px 20px;
+      background: #e62657;
+      color: #fff;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
 
-      img {
-        display: block;
-        margin: 0 auto;
-        max-width: 100%;
-      }
+    .btn:hover {
+      filter: brightness(0.9);
+    }
 
-      .img-50 {
-        width: 30%;
-        max-width: 300px;
-      }
+    img {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+    }
 
-      .names {
-        display: flex;
-        justify-content: space-around;
-        text-align: center;
-        gap: 10px;
-        flex-wrap: wrap;
-        margin-bottom: 20px;
-      }
+    .img-50 {
+      width: 30%;
+      max-width: 300px;
+    }
 
-      .names div {
-        flex: 1 1 45%;
-      }
+    .names {
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
 
-      .names input {
-        text-align: center;
-        background-color: #e62657;
-        border: 0;
-        padding: 10px;
-        border-radius: 20px;
-        font-weight: bold;
-        text-transform: uppercase;
-        color: white;
-        font-size: 0.8em;
-        width: 100%;
-      }
+    .names div {
+      flex: 1 1 45%;
+    }
 
-      form h3 {
-        margin: 20px 0;
-      }
+    .names input {
+      text-align: center;
+      background-color: #e62657;
+      border: 0;
+      padding: 10px;
+      border-radius: 20px;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: white;
+      font-size: 0.8em;
+      width: 100%;
+    }
 
-      #section2, #section3, #section4 {
-        display: none;
-      }
+    form h3 {
+      margin: 20px 0;
+    }
 
-      #name-first, #name-second {
-        text-align: center;
-        font-weight: bold;
-        margin-bottom: 20px;
-        text-transform: uppercase;
-        font-size: 24px;
-      }
+    #section2,
+    #section3,
+    #section4 {
+      display: none;
+    }
 
-      table {
-        margin: 10px 0px;
-      }
+    #name-first,
+    #name-second {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      font-size: 24px;
+    }
 
-      table, th, td {
-        border: 1px solid #e62657;
-        border-collapse: collapse;
-        padding: 5px;
-      }
+    table {
+      margin: 10px 0px;
+    }
 
-      table thead {
-        background:  #e62657;
-      }
+    table,
+    th,
+    td {
+      border: 1px solid #e62657;
+      border-collapse: collapse;
+      padding: 5px;
+    }
 
-      table img {
-        width: 30px;
-      }
+    table thead {
+      background: #e62657;
+    }
 
-      input[type=radio]{
-        appearance: none;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background-clip: content-box;
-        border: 1px solid #e62657;
-        background-color: rgba(255,252,229,1);
-      }
+    table img {
+      width: 30px;
+    }
 
-      input[type="radio"]:checked {
-        background-color: #e62657;
-        padding: 0px;
-        border: 0px solid #fff;
-      }
+    input[type=radio] {
+      appearance: none;
+      min-width: 20px;
+      min-height: 20px;
+      border-radius: 50%;
+      background-clip: content-box;
+      border: 1px solid #e62657;
+      background-color: rgba(255, 252, 229, 1);
+    }
 
-      .options label {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-        margin-bottom: 5px;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <a href="./index.html">
-        <img src="./ppc.png" alt="Logo ProntoPraCasar - Questionário para casais" class="img-50" />
-      </a>
-      <h1 class="title theme-color">ProntoPraCasar</h1>
-    </header>
+    input[type="radio"]:checked {
+      background-color: #e62657;
+      padding: 0px;
+      border: 0px solid #fff;
+    }
 
-    <main class="container">
-      <section id="section1">
-        <form id="getNamesForm" method="post">
-          <h2 class="title">Nomes do Casal:</h2>
-          <div class="names">
-            <div>
-              <label for="first">1°</label>
-              <input type="text" id="first" name="first" required />
-            </div>
-            <div>
-              <label for="second">2°</label>
-              <input type="text" id="second" name="second" required />
-            </div>
+    .options label {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a href="./index.html">
+      <img src="./ppc.png" alt="Logo ProntoPraCasar - Questionário para casais" class="img-50" />
+    </a>
+    <h1 class="title theme-color">ProntoPraCasar</h1>
+  </header>
+
+  <main class="container">
+    <section id="section1">
+      <form id="getNamesForm" method="post">
+        <h2 class="title">Nomes do Casal:</h2>
+        <div class="names">
+          <div>
+            <label for="first">1°</label>
+            <input type="text" id="first" name="first" required />
           </div>
-          <button type="submit" class="btn">Iniciar</button>
-        </form>
-      </section>
+          <div>
+            <label for="second">2°</label>
+            <input type="text" id="second" name="second" required />
+          </div>
+        </div>
+        <button type="submit" class="btn">Iniciar</button>
+      </form>
+    </section>
 
-      <section id="section2">
-        <p id="name-first"></p>
-        <form id="firstForm" method="post">
-          <div class="questions-container"></div>
+    <section id="section2">
+      <p id="name-first"></p>
+      <form id="firstForm" method="post">
+        <div class="questions-container"></div>
 
-          <button type="submit" class="btn">Próximo</button>
-        </form>
-      </section>
+        <button type="submit" class="btn">Próximo</button>
+      </form>
+    </section>
 
-      <section id="section3">
-        <p id="name-second"></p>
-        <form id="secondForm" method="post">
-          <div class="questions-container"></div>
+    <section id="section3">
+      <p id="name-second"></p>
+      <form id="secondForm" method="post">
+        <div class="questions-container"></div>
 
-          <button type="submit" class="btn">Ver Resultados</button>
-        </form>
-      </section>
+        <button type="submit" class="btn">Ver Resultados</button>
+      </form>
+    </section>
 
-      <section id="section4">
-        <h2 class="theme-color">Resultados</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Perguntas</th>
-              <th>Match</th>
-            </tr>
-          </thead>
-          <tbody id="results-body">
-          </tbody>
-        </table>
-        <p>Use os pontos em que não deram Match para discurtir entre vocês.</p>
-        <button class="btn" id="restart">Reiniciar</button>
-      </section>
-    </main>
+    <section id="section4">
+      <h2 class="theme-color">Resultados</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Perguntas</th>
+            <th>Match</th>
+          </tr>
+        </thead>
+        <tbody id="results-body">
+        </tbody>
+      </table>
+      <p>Use os pontos em que não deram Match para discurtir entre vocês.</p>
+      <button class="btn" id="restart">Reiniciar</button>
+    </section>
+  </main>
 
-    <script>
-      window.onload = function () {
+  <script>
+    window.onload = function () {
 
-        const questions = [
-          {
-            "question": "Você prefere começar o dia cedo ou tarde?",
-            "options": ["Cedo, gosto de uma rotina matinal", "Mais tarde, prefiro dormir um pouco mais"],
-            "category": "Rotina e estilo de vida"
-          },
-          {
-            "question": "Você prefere morar na cidade grande ou no interior?",
-            "options": ["Cidade grande, amo movimento e agitação", "Interior, quero sossego e tranquilidade"],
-            "category": "Rotina e estilo de vida"
-          },
-          {
-            "question": "Você é vegano ou vegetariano?",
-            "options": ["Sim", "Não"],
-            "category": "Rotina e estilo de vida"
-          },
-          {
-            "question": "Em relação à criação de filhos, a religião deve ser:",
-            "options": ["Decidida por ambos", "Não imposta"],
-            "category": "Rotina e estilo de vida"
-          },
-          {
-            "question": "Você prefere ter uma vida estável com rotina fixa ou buscar novos desafios e variar sempre?",
-            "options": ["Rotina fixa e estável", "Variar senpre e ter novos desafios"],
-            "category": "Rotina e estilo de vida"
-          },
-          {
-            "question": "Você prefere morar em um lugar de clima quente ou frio?",
-            "options": ["Quente", "Frio"],
-            "category": "Rotina e estilo de vida"
-          },
-          {
-            "question": "Você costuma procrastinar ou é sempre eficiente no que faz?",
-            "options": ["Procrastino, faço depois.", "Sempre eficiente, tem que fazer agora!"],
-            "category": "Hábitos e preferências"
-          },
-          {
-            "question": "Em uma discussão o que você prefere?",
-            "options": ["Esfriar a cabeça primeiro e falar depois", "Quero resolver logo e o quanto antes"],
-            "category": "Hábitos e preferências"
-          },
-          {
-            "question": "Você gosta de passar seu tempo livre sozinho?",
-            "options": ["Sim, gosto de ter um tempo só pra mim", "Não, quero estar sempre acompanhado"],
-            "category": "Hábitos e preferências"
-          },
-          {
-            "question": "Você prefere ir a festas ou ter encontros mais íntimos e tranquilos?",
-            "options": ["Festas, com música alta e muitas pessoas", "Encontros íntimos, lugares tranquilos e em poucos amigos"],
-            "category": "Hábitos e preferências"
-          },
-          {
-            "question": "Você prefere morar em uma casa ou apartamento?",
-            "options": ["Casa", "Apartamento"],
-            "category": "Hábitos e preferências"
-          },
-          {
-            "question": "Você é uma pessoa que se importa com a saúde ou não?",
-            "options": ["Sim, faço atividades físicas e cuido da alimentação", "Não, não me importo"],
-            "category": "Hábitos e preferências"
-          },
-          {
-            "question": "Você é uma pessoa que fuma ou bebe?",
-            "options": ["Sim, com moderação", "Não, evito cigarros e bebidas"],
-            "category": "Hábitos e preferências"
-          },
-          {
-            "question": "Como você organiza a sua casa?",
-            "options": ["Desleixado, faço uma bagunça organizada", "Organizado, tudo no lugar certo"],
-            "category": "Hábitos e preferências"
-          },
-           {
-            "question": "Você quer ter filhos?",
-            "options": ["Sim", "Não"],
-            "category": "Família e relacionamentos"
-          },
-           {
-            "question": "Você prefere morar perto ou longe dos parentes?",
-            "options": ["Longe", "Perto"],
-            "category": "Família e relacionamentos"
-          },
-           {
-            "question": "Você prefere animais de estimação ou não quer ter nenhum?",
-            "options": ["Quero ter algum animal de estimação", "Não quero ter animal de estimação"],
-            "category": "Família e relacionamentos"
-          },
-           {
-            "question": "Como lida se caso seu parceiro tenha como amigo algum Ex?",
-            "options": ["Não me importo", "Prefiro que terminem a amizade"],
-            "category": "Família e relacionamentos"
-          },
-           {
-            "question": "Como lida se caso seu parceiro se divirta apenas com os amigos?",
-            "options": ["Não gosto, tem que estar sempre comigo", "Não me importo"],
-            "category": "Família e relacionamentos"
-          },
-          {
-            "question": "A diferença de ideologias políticas é um problema?",
-            "options": ["Sim", "Não"],
-            "category": "Família e relacionamentos"
-          },
-           {
-            "question": "Se você receber um dinheiro a mais, o que prefere?",
-            "options": ["Vou guarda o dinheiro", "Vou comprar o que eu quero"],
-            "category": "Finanças"
-          },
-           {
-            "question": "Como você prefere organizar as finanças da família?",
-            "options": ["Conta conjunta", "Contas separadas"],
-            "category": "Finanças"
-          },
-        ];
+      const questions = [
+        {
+          "question": "Você prefere começar o dia cedo ou tarde?",
+          "options": ["Cedo, gosto de uma rotina matinal", "Mais tarde, prefiro dormir um pouco mais"],
+          "category": "Rotina e estilo de vida"
+        },
+        {
+          "question": "Você prefere morar na cidade grande ou no interior?",
+          "options": ["Cidade grande, amo movimento e agitação", "Interior, quero sossego e tranquilidade"],
+          "category": "Rotina e estilo de vida"
+        },
+        {
+          "question": "Você é vegano ou vegetariano?",
+          "options": ["Sim", "Não"],
+          "category": "Rotina e estilo de vida"
+        },
+        {
+          "question": "Em relação à criação de filhos, a religião deve ser:",
+          "options": ["Decidida por ambos", "Não imposta"],
+          "category": "Rotina e estilo de vida"
+        },
+        {
+          "question": "Você prefere ter uma vida estável com rotina fixa ou buscar novos desafios e variar sempre?",
+          "options": ["Rotina fixa e estável", "Variar senpre e ter novos desafios"],
+          "category": "Rotina e estilo de vida"
+        },
+        {
+          "question": "Você prefere morar em um lugar de clima quente ou frio?",
+          "options": ["Quente", "Frio"],
+          "category": "Rotina e estilo de vida"
+        },
+        {
+          "question": "Você costuma procrastinar ou é sempre eficiente no que faz?",
+          "options": ["Procrastino, faço depois.", "Sempre eficiente, tem que fazer agora!"],
+          "category": "Hábitos e preferências"
+        },
+        {
+          "question": "Em uma discussão o que você prefere?",
+          "options": ["Esfriar a cabeça primeiro e falar depois", "Quero resolver logo e o quanto antes"],
+          "category": "Hábitos e preferências"
+        },
+        {
+          "question": "Você gosta de passar seu tempo livre sozinho?",
+          "options": ["Sim, gosto de ter um tempo só pra mim", "Não, quero estar sempre acompanhado"],
+          "category": "Hábitos e preferências"
+        },
+        {
+          "question": "Você prefere ir a festas ou ter encontros mais íntimos e tranquilos?",
+          "options": ["Festas, com música alta e muitas pessoas", "Encontros íntimos, lugares tranquilos e em poucos amigos"],
+          "category": "Hábitos e preferências"
+        },
+        {
+          "question": "Você prefere morar em uma casa ou apartamento?",
+          "options": ["Casa", "Apartamento"],
+          "category": "Hábitos e preferências"
+        },
+        {
+          "question": "Você é uma pessoa que se importa com a saúde ou não?",
+          "options": ["Sim, faço atividades físicas e cuido da alimentação", "Não, não me importo"],
+          "category": "Hábitos e preferências"
+        },
+        {
+          "question": "Você é uma pessoa que fuma ou bebe?",
+          "options": ["Sim, com moderação", "Não, evito cigarros e bebidas"],
+          "category": "Hábitos e preferências"
+        },
+        {
+          "question": "Como você organiza a sua casa?",
+          "options": ["Desleixado, faço uma bagunça organizada", "Organizado, tudo no lugar certo"],
+          "category": "Hábitos e preferências"
+        },
+        {
+          "question": "Você quer ter filhos?",
+          "options": ["Sim", "Não"],
+          "category": "Família e relacionamentos"
+        },
+        {
+          "question": "Você prefere morar perto ou longe dos parentes?",
+          "options": ["Longe", "Perto"],
+          "category": "Família e relacionamentos"
+        },
+        {
+          "question": "Você prefere animais de estimação ou não quer ter nenhum?",
+          "options": ["Quero ter algum animal de estimação", "Não quero ter animal de estimação"],
+          "category": "Família e relacionamentos"
+        },
+        {
+          "question": "Como lida se caso seu parceiro tenha como amigo algum Ex?",
+          "options": ["Não me importo", "Prefiro que terminem a amizade"],
+          "category": "Família e relacionamentos"
+        },
+        {
+          "question": "Como lida se caso seu parceiro se divirta apenas com os amigos?",
+          "options": ["Não gosto, tem que estar sempre comigo", "Não me importo"],
+          "category": "Família e relacionamentos"
+        },
+        {
+          "question": "A diferença de ideologias políticas é um problema?",
+          "options": ["Sim", "Não"],
+          "category": "Família e relacionamentos"
+        },
+        {
+          "question": "Se você receber um dinheiro a mais, o que prefere?",
+          "options": ["Vou guarda o dinheiro", "Vou comprar o que eu quero"],
+          "category": "Finanças"
+        },
+        {
+          "question": "Como você prefere organizar as finanças da família?",
+          "options": ["Conta conjunta", "Contas separadas"],
+          "category": "Finanças"
+        },
+      ];
 
-        const section1 = document.querySelector("#section1");
-        const section2 = document.querySelector("#section2");
-        const section3 = document.querySelector("#section3");
-        const section4 = document.querySelector("#section4");
+      const section1 = document.querySelector("#section1");
+      const section2 = document.querySelector("#section2");
+      const section3 = document.querySelector("#section3");
+      const section4 = document.querySelector("#section4");
 
-        let results = {};
+      let results = {};
 
-        document.querySelector("#getNamesForm").addEventListener("submit", function (event) {
-          event.preventDefault();
-  
-          localStorage.setItem("name-first", document.querySelector("#first").value);
-          localStorage.setItem("name-second", document.querySelector("#second").value);
+      document.querySelector("#getNamesForm").addEventListener("submit", function (event) {
+        event.preventDefault();
 
-          setName();
+        localStorage.setItem("name-first", document.querySelector("#first").value);
+        localStorage.setItem("name-second", document.querySelector("#second").value);
 
+        setName();
+
+        section1.style.display = "none";
+        section2.style.display = "block";
+
+        localStorage.setItem("section", 1);
+      });
+
+      document.querySelector("#firstForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        submitQuiz('firstForm');
+
+        section2.style.display = "none";
+        section3.style.display = "block";
+
+        localStorage.setItem("section", 2);
+      });
+
+      document.querySelector("#secondForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        submitQuiz('secondForm');
+
+        setResults();
+
+        localStorage.setItem("section", 3);
+      });
+
+      document.querySelector("#restart").addEventListener("click", function () {
+        localStorage.clear();
+        location.reload();
+      });
+
+      function submitQuiz(idForm) {
+        const form = document.getElementById(idForm);
+        const formData = new FormData(form);
+        let responses = {};
+
+        formData.forEach((value, key) => {
+          responses[key] = value;
+        });
+
+        localStorage.setItem(idForm, JSON.stringify(responses));
+      }
+
+      function setName() {
+        document.querySelector("#name-first").textContent = '1° ' + localStorage.getItem("name-first");
+        document.querySelector("#name-second").textContent = '2° ' + localStorage.getItem("name-second");
+      }
+
+      function init() {
+        if (localStorage.getItem("section") == '1') {
           section1.style.display = "none";
           section2.style.display = "block";
+        }
 
-          localStorage.setItem("section", 1);
-        });
-  
-        document.querySelector("#firstForm").addEventListener("submit", function (event) {
-          event.preventDefault();
-          submitQuiz('firstForm');
-
+        if (localStorage.getItem("section") == '2') {
+          section1.style.display = "none";
           section2.style.display = "none";
           section3.style.display = "block";
-
-          localStorage.setItem("section", 2);
-        });
-
-        document.querySelector("#secondForm").addEventListener("submit", function (event) {
-          event.preventDefault();
-          submitQuiz('secondForm');
-
-          setResults();
-
-          localStorage.setItem("section", 3);
-        });
-
-        document.querySelector("#restart").addEventListener("click", function () {
-          localStorage.clear();
-          location.reload();
-        });
-
-        function submitQuiz(idForm) {
-          const form = document.getElementById(idForm);
-          const formData = new FormData(form);
-          let responses = {};
-
-          formData.forEach((value, key) => {
-            responses[key] = value;
-          });
-
-          localStorage.setItem(idForm, JSON.stringify(responses));
         }
 
-        function setName() {
-          document.querySelector("#name-first").textContent = '1° ' + localStorage.getItem("name-first");
-          document.querySelector("#name-second").textContent = '2° ' + localStorage.getItem("name-second");
-        }
-
-        function init() {
-          if (localStorage.getItem("section") == '1') {
-            section1.style.display = "none";
-            section2.style.display = "block";
-          }
-
-          if (localStorage.getItem("section") == '2') {
-            section1.style.display = "none";
-            section2.style.display = "none";
-            section3.style.display = "block";
-          }
-
-           if (localStorage.getItem("section") == '3') {
-            section1.style.display = "none";
-            section2.style.display = "none";
-            section3.style.display = "none";
-            section4.style.display = "block";
-
-            setResults();
-          }
-
-          setName();
-        }
-
-        function setResults() {
-          let form1 = JSON.parse(localStorage.getItem("firstForm"));
-          let form2 = JSON.parse(localStorage.getItem("secondForm"));
-
-          let differences = 0;
-
-          for (let key in form1) {
-            if (form1[key] !== form2[key]) {
-              differences++;
-              results[key] = 0;
-            } else {
-              results[key] = 1;
-            }
-          }
-
-          populateResultsTable();
-
+        if (localStorage.getItem("section") == '3') {
+          section1.style.display = "none";
+          section2.style.display = "none";
           section3.style.display = "none";
           section4.style.display = "block";
-          // localStorage.clear();
+
+          setResults();
         }
 
-        function populateResultsTable() {
-          let tableContent = '';
-          let index = 0;
-          for (let item in results) {
-            icon = results[item] == 0 ? 'error' : 'success';
-            tableContent += `
+        setName();
+      }
+
+      function setResults() {
+        let form1 = JSON.parse(localStorage.getItem("firstForm"));
+        let form2 = JSON.parse(localStorage.getItem("secondForm"));
+
+        let differences = 0;
+
+        for (let key in form1) {
+          if (form1[key] !== form2[key]) {
+            differences++;
+            results[key] = 0;
+          } else {
+            results[key] = 1;
+          }
+        }
+
+        populateResultsTable();
+
+        section3.style.display = "none";
+        section4.style.display = "block";
+      }
+
+      function populateResultsTable() {
+        let tableContent = '';
+        let index = 0;
+        for (let item in results) {
+          icon = results[item] == 0 ? 'error' : 'success';
+          tableContent += `
               <tr>
                 <td>${questions[index]['question']}</td>
                 <td><img src="./images/${icon}.svg"></td>
               </tr>
             `;
-            index++;
-          }
-
-          document.querySelector("#results-body").innerHTML = tableContent;
+          index++;
         }
 
-        function populateQuestions() {
-          const quizContainers = document.querySelectorAll(".questions-container");
+        document.querySelector("#results-body").innerHTML = tableContent;
+      }
 
-          let lastCategory = "";
-          questions.forEach((question, index) => {
-            showCategory = question.category != lastCategory;
-            let options = '';
-            for (let opt of question.options) {
-              indexOpt = 1;
-              options += `<label>
-                      <input type="radio" name="q${indexOpt}" value="1" required /> ${opt}
+      function populateQuestions() {
+        const quizContainers = document.querySelectorAll(".questions-container");
+
+        let lastCategory = "";
+        questions.forEach((question, index) => {
+          showCategory = question.category != lastCategory;
+          let options = '';
+          let value = 1;
+          for (let opt of question.options) {
+            options += `<label>
+                      <input type="radio" name="q${index + 1}" value="${value}" required /> ${opt}
                     </label>`;
-              indexOpt++;
-            }
-            quizContainers.forEach(function(container) {
-              container.innerHTML += `
+            value++;
+          }
+          quizContainers.forEach(function (container) {
+            container.innerHTML += `
                 ${showCategory ? `<h3 class='theme-color'>${question.category}</h3>` : ''}
                 <div class="question">
                   <p>${index + 1}. ${question.question}</p>
@@ -492,16 +501,17 @@
                   </div>
                 </div>
               `;
-            });
-            lastCategory = question.category;
-            options = '';
           });
-        }
-
-        populateQuestions();
-
-        init();
+          lastCategory = question.category;
+          options = '';
+        });
       }
-    </script>
-  </body>
+
+      populateQuestions();
+
+      init();
+    }
+  </script>
+</body>
+
 </html>
