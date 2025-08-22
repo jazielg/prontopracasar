@@ -122,6 +122,52 @@
       display: none;
     }
 
+    .category-section {
+      display: none;
+    }
+
+    .category-section.active {
+      display: block;
+    }
+
+    .category-progress {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 20px 0;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+    }
+
+    .category-indicator {
+      display: flex;
+      gap: 10px;
+    }
+
+    .category-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .category-dot.completed {
+      background: #28a745;
+    }
+
+    .category-dot.current {
+      background: #e62657;
+      transform: scale(1.2);
+    }
+
+    .category-info {
+      text-align: right;
+      color: #ccc;
+      font-size: 14px;
+    }
+
     #name-first,
     #name-second {
       text-align: center;
@@ -171,7 +217,231 @@
       display: flex;
       gap: 10px;
       align-items: center;
-      margin-bottom: 5px;
+      margin-bottom: 10px;
+      padding: 12px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid transparent;
+    }
+
+    .options label:hover {
+      background: rgba(230, 38, 87, 0.1);
+      border-color: rgba(230, 38, 87, 0.3);
+    }
+
+    .options label:has(input:checked) {
+      background: rgba(230, 38, 87, 0.2);
+      border-color: #e62657;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+      margin: 20px 0;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #e62657, #ff4d7a);
+      border-radius: 3px;
+      transition: width 0.5s ease;
+    }
+
+    .progress-text {
+      text-align: center;
+      margin-bottom: 10px;
+      color: #ccc;
+      font-size: 14px;
+    }
+
+    .quiz-header {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      text-align: center;
+      border: 1px solid rgba(230, 38, 87, 0.2);
+    }
+
+    .quiz-step {
+      background: #e62657;
+      color: white;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      display: inline-block;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .category-header {
+      background: rgba(230, 38, 87, 0.1);
+      padding: 15px;
+      border-radius: 10px;
+      margin: 25px 0 20px 0;
+      border-left: 4px solid #e62657;
+    }
+
+    .question {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .question p {
+      margin-bottom: 15px;
+      font-size: 1.1em;
+      font-weight: 500;
+      line-height: 1.5;
+      color: #f8f8f8;
+    }
+
+    .results-container {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 15px;
+      margin: 20px 0;
+    }
+
+    .results-summary {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .compatibility-score {
+      font-size: 48px;
+      font-weight: bold;
+      color: #e62657;
+      margin: 20px 0;
+    }
+
+    .score-label {
+      font-size: 18px;
+      color: #ccc;
+      margin-bottom: 10px;
+    }
+
+    table {
+      width: 100%;
+      margin: 20px 0;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    table th {
+      background: linear-gradient(135deg, #e62657, #ff4d7a);
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      padding: 15px;
+    }
+
+    table td {
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .match-icon {
+      text-align: center;
+      font-size: 24px;
+    }
+
+    .names {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .name-input {
+      position: relative;
+    }
+
+    .name-input label {
+      position: absolute;
+      top: -10px;
+      left: 15px;
+      background: #101728;
+      padding: 0 8px;
+      color: #e62657;
+      font-weight: bold;
+      font-size: 12px;
+      z-index: 1;
+    }
+
+    .names input {
+      width: 100%;
+      padding: 15px;
+      border: 2px solid rgba(230, 38, 87, 0.3);
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      color: white;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .names input:focus {
+      outline: none;
+      border-color: #e62657;
+      box-shadow: 0 0 15px rgba(230, 38, 87, 0.3);
+    }
+
+    .btn {
+      padding: 15px 30px;
+      font-size: 16px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      min-width: 150px;
+      box-shadow: 0 4px 15px rgba(230, 38, 87, 0.3);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(230, 38, 87, 0.4);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 15px;
+      }
+      
+      .names {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .compatibility-score {
+        font-size: 36px;
+      }
+      
+      .question {
+        padding: 15px;
+      }
+      
+      .options label {
+        padding: 10px;
+      }
+      
+      table th,
+      table td {
+        padding: 10px;
+        font-size: 14px;
+      }
     }
   </style>
 </head>
@@ -186,59 +456,138 @@
 
   <main class="container">
     <section id="section1">
+      <div class="quiz-header">
+        <div class="quiz-step">Passo 1 de 3</div>
+        <h2 class="title">Vamos começar! Digitem seus nomes:</h2>
+        <p style="color: #ccc; margin-top: 10px;">Cada um responderá às mesmas perguntas separadamente</p>
+      </div>
+      
       <form id="getNamesForm" method="post">
-        <h2 class="title">Nomes do Casal:</h2>
         <div class="names">
-          <div>
-            <label for="first">1°</label>
-            <input type="text" id="first" name="first" required />
+          <div class="name-input">
+            <label for="first">Primeiro a responder</label>
+            <input type="text" id="first" name="first" placeholder="Nome do primeiro do casal" required />
           </div>
-          <div>
-            <label for="second">2°</label>
-            <input type="text" id="second" name="second" required />
+          <div class="name-input">
+            <label for="second">Segundo a responder</label>
+            <input type="text" id="second" name="second" placeholder="Nome do segundo do casal" required />
           </div>
         </div>
-        <button type="submit" class="btn">Iniciar</button>
+        <button type="submit" class="btn">Começar Quiz</button>
       </form>
     </section>
 
     <section id="section2">
-      <p id="name-first"></p>
+      <div class="quiz-header">
+        <div class="quiz-step">Passo 2 de 3</div>
+        <h2 id="name-first" class="theme-color"></h2>
+        <p style="color: #ccc; margin-top: 10px;">Responda com sinceridade às perguntas por categoria</p>
+      </div>
+      
+      <div class="category-progress">
+        <div class="category-indicator" id="category-dots-1">
+          <div class="category-dot current" data-category="0"></div>
+          <div class="category-dot" data-category="1"></div>
+          <div class="category-dot" data-category="2"></div>
+          <div class="category-dot" data-category="3"></div>
+        </div>
+        <div class="category-info">
+          <div>Categoria: <span id="current-category-1"></span></div>
+          <div><span id="category-progress-1">1 de 4</span></div>
+        </div>
+      </div>
+      
       <form id="firstForm" method="post">
-        <div class="questions-container"></div>
-
-        <button type="submit" class="btn">Próximo</button>
+        <div id="category-0-person1" class="category-section active"></div>
+        <div id="category-1-person1" class="category-section"></div>
+        <div id="category-2-person1" class="category-section"></div>
+        <div id="category-3-person1" class="category-section"></div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+          <button type="button" id="next-category-1" class="btn">Próxima Categoria</button>
+          <button type="submit" id="finish-person1" class="btn" style="display: none;">Próxima Pessoa</button>
+        </div>
       </form>
     </section>
 
     <section id="section3">
-      <p id="name-second"></p>
+      <div class="quiz-header">
+        <div class="quiz-step">Passo 3 de 3</div>
+        <h2 id="name-second" class="theme-color"></h2>
+        <p style="color: #ccc; margin-top: 10px;">Agora é a vez da segunda pessoa responder</p>
+      </div>
+      
+      <div class="category-progress">
+        <div class="category-indicator" id="category-dots-2">
+          <div class="category-dot current" data-category="0"></div>
+          <div class="category-dot" data-category="1"></div>
+          <div class="category-dot" data-category="2"></div>
+          <div class="category-dot" data-category="3"></div>
+        </div>
+        <div class="category-info">
+          <div>Categoria: <span id="current-category-2"></span></div>
+          <div><span id="category-progress-2">1 de 4</span></div>
+        </div>
+      </div>
+      
       <form id="secondForm" method="post">
-        <div class="questions-container"></div>
-
-        <button type="submit" class="btn">Ver Resultados</button>
+        <div id="category-0-person2" class="category-section active"></div>
+        <div id="category-1-person2" class="category-section"></div>
+        <div id="category-2-person2" class="category-section"></div>
+        <div id="category-3-person2" class="category-section"></div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+          <button type="button" id="next-category-2" class="btn">Próxima Categoria</button>
+          <button type="submit" id="finish-person2" class="btn" style="display: none;">Ver Resultados</button>
+        </div>
       </form>
     </section>
 
     <section id="section4">
-      <h2 class="theme-color">Resultados</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Perguntas</th>
-            <th>Match</th>
-          </tr>
-        </thead>
-        <tbody id="results-body">
-        </tbody>
-      </table>
-      <p>Use os pontos em que não deram Match para discurtir entre vocês.</p>
-      <button class="btn" id="restart">Reiniciar</button>
+      <div class="quiz-header">
+        <div class="quiz-step">Resultados</div>
+        <h2 class="theme-color">Análise de Compatibilidade</h2>
+      </div>
+      
+      <div class="results-container">
+        <div class="results-summary">
+          <div class="score-label">Índice de Compatibilidade</div>
+          <div class="compatibility-score" id="compatibility-percentage">0%</div>
+          <p id="compatibility-message" style="color: #ccc; margin-bottom: 20px;"></p>
+        </div>
+        
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 70%;">Pergunta</th>
+              <th style="width: 30%;">Compatibilidade</th>
+            </tr>
+          </thead>
+          <tbody id="results-body">
+          </tbody>
+        </table>
+        
+        <div style="background: rgba(230, 38, 87, 0.1); padding: 20px; border-radius: 10px; margin: 30px 0; border-left: 4px solid #e62657;">
+          <h3 style="color: #e62657; margin-bottom: 10px;">💡 Dica Importante</h3>
+          <p>Use os pontos onde não houve compatibilidade como oportunidades para conversas profundas. O importante não é concordar em tudo, mas entender as diferenças e encontrar formas de conviver harmoniosamente com elas.</p>
+        </div>
+        
+        <div style="text-align: center;">
+          <button class="btn" id="restart">Fazer Novo Quiz</button>
+        </div>
+      </div>
     </section>
   </main>
 
   <script>
     window.onload = function () {
+      const categories = [
+        "Rotina e estilo de vida",
+        "Hábitos e preferências", 
+        "Família e relacionamentos",
+        "Finanças"
+      ];
+
       const questions = [
         {
           "question": "Você prefere começar o dia cedo ou tarde?",
@@ -369,6 +718,8 @@
       const resultsBody = document.querySelector("#results-body");
 
       let results = {};
+      let currentCategory1 = 0;
+      let currentCategory2 = 0;
 
       // Função de inicialização
       function init() {
@@ -426,42 +777,157 @@
       function populateResultsTable() {
         let tableContent = '';
         let index = 0;
+        let matchCount = 0;
+        
         for (let item in results) {
-          const icon = results[item] === 0 ? 'error' : 'success';
+          const isMatch = results[item] === 1;
+          if (isMatch) matchCount++;
+          
+          const matchText = isMatch ? '✅ Compatível' : '❌ Divergente';
+          const rowClass = isMatch ? 'style="background: rgba(40, 167, 69, 0.1);"' : 'style="background: rgba(220, 53, 69, 0.1);"';
+          
           tableContent += `
-            <tr>
+            <tr ${rowClass}>
               <td>${questions[index].question}</td>
-              <td><img src="./images/${icon}.svg"></td>
+              <td class="match-icon">${matchText}</td>
             </tr>
           `;
           index++;
         }
+        
         resultsBody.innerHTML = tableContent;
+        
+        // Calcular e exibir porcentagem de compatibilidade
+        const totalQuestions = Object.keys(results).length;
+        const compatibilityPercentage = Math.round((matchCount / totalQuestions) * 100);
+        
+        document.getElementById('compatibility-percentage').textContent = compatibilityPercentage + '%';
+        
+        // Mensagem baseada na porcentagem
+        let message = '';
+        if (compatibilityPercentage >= 80) {
+          message = 'Excelente compatibilidade! Vocês estão muito alinhados.';
+        } else if (compatibilityPercentage >= 60) {
+          message = 'Boa compatibilidade! Algumas diferenças podem enriquecer o relacionamento.';
+        } else if (compatibilityPercentage >= 40) {
+          message = 'Compatibilidade moderada. Conversem sobre as diferenças importantes.';
+        } else {
+          message = 'Muitas diferenças encontradas. Diálogo e compreensão serão fundamentais.';
+        }
+        
+        document.getElementById('compatibility-message').textContent = message;
       }
 
-      // Função para popular as perguntas nas seções de quiz
-      function populateQuestions() {
-        const quizContainers = document.querySelectorAll(".questions-container");
-        let lastCategory = "";
+      // Função para popular as perguntas por categoria
+      function populateQuestionsByCategory() {
+        categories.forEach((categoryName, categoryIndex) => {
+          const categoryQuestions = questions.filter(q => q.category === categoryName);
+          
+          // Para pessoa 1
+          const container1 = document.querySelector(`#category-${categoryIndex}-person1`);
+          container1.innerHTML = `
+            <div class="category-header">
+              <h3 class='theme-color' style="margin: 0;">${categoryName}</h3>
+            </div>
+          `;
+          
+          // Para pessoa 2
+          const container2 = document.querySelector(`#category-${categoryIndex}-person2`);
+          container2.innerHTML = `
+            <div class="category-header">
+              <h3 class='theme-color' style="margin: 0;">${categoryName}</h3>
+            </div>
+          `;
 
-        questions.forEach((question, index) => {
-          const showCategory = question.category !== lastCategory;
-          const options = question.options.map((opt, value) =>
-            `<label><input type="radio" name="q${index + 1}" value="${value + 1}" required /> ${opt}</label>`
-          ).join('');
+          categoryQuestions.forEach((question, qIndex) => {
+            const globalIndex = questions.indexOf(question);
+            const options = question.options.map((opt, value) =>
+              `<label><input type="radio" name="q${globalIndex + 1}" value="${value + 1}" required /> ${opt}</label>`
+            ).join('');
 
-          quizContainers.forEach(container => {
-            container.innerHTML += `
-              ${showCategory ? `<h3 class='theme-color'>${question.category}</h3>` : ''}
+            const questionHtml = `
               <div class="question">
-                <p>${index + 1}. ${question.question}</p>
+                <p>${globalIndex + 1}. ${question.question}</p>
                 <div class="options">${options}</div>
               </div>
             `;
-          });
 
-          lastCategory = question.category;
+            container1.innerHTML += questionHtml;
+            container2.innerHTML += questionHtml;
+          });
         });
+      }
+
+      // Função para atualizar indicadores de categoria
+      function updateCategoryProgress(person) {
+        const currentCat = person === 1 ? currentCategory1 : currentCategory2;
+        const categoryName = categories[currentCat];
+        
+        document.getElementById(`current-category-${person}`).textContent = categoryName;
+        document.getElementById(`category-progress-${person}`).textContent = `${currentCat + 1} de ${categories.length}`;
+        
+        // Atualizar dots
+        const dots = document.querySelectorAll(`#category-dots-${person} .category-dot`);
+        dots.forEach((dot, index) => {
+          dot.classList.remove('current', 'completed');
+          if (index < currentCat) {
+            dot.classList.add('completed');
+          } else if (index === currentCat) {
+            dot.classList.add('current');
+          }
+        });
+      }
+
+      // Função para validar se todas as perguntas da categoria atual foram respondidas
+      function validateCurrentCategory(person) {
+        const currentCat = person === 1 ? currentCategory1 : currentCategory2;
+        const categoryQuestions = questions.filter(q => q.category === categories[currentCat]);
+        const container = document.querySelector(`#category-${currentCat}-person${person}`);
+        
+        let allAnswered = true;
+        categoryQuestions.forEach(question => {
+          const globalIndex = questions.indexOf(question);
+          const questionInputs = container.querySelectorAll(`input[name="q${globalIndex + 1}"]`);
+          const isAnswered = Array.from(questionInputs).some(input => input.checked);
+          if (!isAnswered) {
+            allAnswered = false;
+          }
+        });
+        
+        return allAnswered;
+      }
+
+      // Função para avançar categoria
+      function nextCategory(person) {
+        if (!validateCurrentCategory(person)) {
+          alert('Por favor, responda todas as perguntas desta categoria antes de prosseguir.');
+          return;
+        }
+
+        const currentCat = person === 1 ? currentCategory1 : currentCategory2;
+        const nextCat = currentCat + 1;
+        
+        // Esconder categoria atual
+        document.querySelector(`#category-${currentCat}-person${person}`).classList.remove('active');
+        
+        if (nextCat < categories.length) {
+          // Mostrar próxima categoria
+          document.querySelector(`#category-${nextCat}-person${person}`).classList.add('active');
+          
+          if (person === 1) {
+            currentCategory1 = nextCat;
+          } else {
+            currentCategory2 = nextCat;
+          }
+          
+          updateCategoryProgress(person);
+        } else {
+          // Última categoria - mostrar botão finalizar
+          document.getElementById(`next-category-${person}`).style.display = 'none';
+          document.getElementById(`finish-person${person}`).style.display = 'inline-block';
+        }
+        
+        window.scrollTo(0, 0);
       }
 
       // Event Listeners para submissões de formulários
@@ -471,19 +937,45 @@
         localStorage.setItem("name-second", document.querySelector("#second").value);
         setName();
         localStorage.setItem("section", 1);
+        updateCategoryProgress(1);
         init();
+      });
+
+      // Event listeners para botões de próxima categoria
+      document.querySelector("#next-category-1").addEventListener("click", function() {
+        nextCategory(1);
+      });
+
+      document.querySelector("#next-category-2").addEventListener("click", function() {
+        nextCategory(2);
       });
 
       document.querySelector("#firstForm").addEventListener("submit", function (event) {
         event.preventDefault();
+        
+        // Validar se todas as categorias foram completadas
+        if (currentCategory1 < categories.length - 1 || !validateCurrentCategory(1)) {
+          alert('Por favor, complete todas as categorias antes de prosseguir.');
+          return;
+        }
+        
         submitQuiz('firstForm');
         localStorage.setItem("section", 2);
+        currentCategory2 = 0;
+        updateCategoryProgress(2);
         init();
         window.scrollTo(0, 0);
       });
 
       document.querySelector("#secondForm").addEventListener("submit", function (event) {
         event.preventDefault();
+        
+        // Validar se todas as categorias foram completadas
+        if (currentCategory2 < categories.length - 1 || !validateCurrentCategory(2)) {
+          alert('Por favor, complete todas as categorias antes de prosseguir.');
+          return;
+        }
+        
         submitQuiz('secondForm');
         setResults();
         localStorage.setItem("section", 3);
@@ -497,7 +989,7 @@
       });
 
       // Chama a função para preencher as perguntas e iniciar o processo
-      populateQuestions();
+      populateQuestionsByCategory();
       init();
     }
   </script>
