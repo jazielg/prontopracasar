@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /quiz.html
+Disallow: /results.html
